@@ -3,7 +3,6 @@ package com.example.scheduler;
 import org.springaicommunity.mcp.annotation.McpTool;
 import org.springaicommunity.mcp.annotation.McpToolParam;
 import org.springframework.ai.tool.annotation.Tool;
-import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
@@ -23,17 +22,14 @@ public class SchedulerApplication {
 @Service
 class DogAdoptionScheduler {
 
-	@McpTool(description = """
-            provide a time for an appointment to pick up or adopt a dog from a Pooch Palace location
-            """)
-	String schedule(@McpToolParam(description = "the id of the dog") int dogId,
-					@McpToolParam(description = "the name of the dog") String dogName) {
+	@McpTool(description = "schedule an appointment to pick up or adopt " +
+			"a dog from a Pooch Palace location")
+	String schedule(@McpToolParam int dogId,@McpToolParam String dogName) {
 		var i = Instant
 				.now()
 				.plus(3, ChronoUnit.DAYS)
 				.toString();
-		IO.println("scheduling " + dogId +'/' +dogName +
-				" for " + i);
+		IO.println("scheduling " + dogName + '/' + dogId + " for pickup at " + i);
 		return i;
 	}
 }
