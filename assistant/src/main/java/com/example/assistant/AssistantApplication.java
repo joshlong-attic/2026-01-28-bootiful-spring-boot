@@ -14,6 +14,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jdbc.core.dialect.JdbcPostgresDialect;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,11 @@ public class AssistantApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AssistantApplication.class, args);
+    }
+
+    @Bean
+    JdbcPostgresDialect jdbcPostgresDialect (){
+        return JdbcPostgresDialect.INSTANCE;
     }
 
     @Bean

@@ -7,8 +7,10 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jdbc.core.dialect.JdbcPostgresDialect;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
@@ -25,6 +27,10 @@ public class AdoptionsApplication {
         SpringApplication.run(AdoptionsApplication.class, args);
     }
 
+    @Bean
+    JdbcPostgresDialect jdbcPostgresDialect (){
+        return JdbcPostgresDialect.INSTANCE ;
+    }
 }
 
 
